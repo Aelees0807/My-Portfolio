@@ -1,0 +1,639 @@
+/* ─── Fonts (must precede all other @imports/rules) ─── */
+/* General Sans (heading alternative when SF Pro unavailable) — via Fontshare */
+@import url("https://api.fontshare.com/v2/css?f[]=general-sans@200,300,400,500,600,700&display=swap");
+
+/* Inter (body fallback) — via Fontsource variable */
+@import url("https://cdn.jsdelivr.net/fontsource/fonts/inter:vf@latest/latin-wght-normal.css");
+
+/* JetBrains Mono (mono fallback for SF Mono) — via Fontsource variable */
+@import url("https://cdn.jsdelivr.net/fontsource/fonts/jetbrains-mono:vf@latest/latin-wght-normal.css");
+
+/* ─── Tailwind ─── */
+@import "tailwindcss";
+
+/* ============================================================
+   DESIGN SYSTEM — Portfolio (Apple-inspired light glass)
+   ============================================================
+   Light backgrounds, soft white glass, diffused shadows,
+   generous radii, Apple-native typography stack.
+   Tailwind CSS v4: CSS-first configuration.
+   ============================================================ */
+
+
+/* ─── Tailwind v4 Theme ─── */
+@theme {
+  /* ── Colors ── */
+  --color-base: #f5f5f7;
+  --color-base-warm: #fafafa;
+  --color-base-cool: #eff0f3;
+  --color-white: #ffffff;
+
+  --color-accent: #0071e3;
+  --color-accent-hover: #0077ed;
+  --color-accent-soft: rgba(0, 113, 227, 0.08);
+  --color-accent-softer: rgba(0, 113, 227, 0.04);
+
+  --color-coral: #FF9A76;
+  --color-coral-soft: rgba(255, 154, 118, 0.12);
+  --color-coral-softer: rgba(255, 154, 118, 0.06);
+
+  --color-mesh-blue: #6E9FFF;
+  --color-mesh-coral: #FF9A76;
+
+  --color-glass-surface: rgba(255, 255, 255, 0.55);
+  --color-glass-surface-elevated: rgba(255, 255, 255, 0.75);
+  --color-glass-border: rgba(255, 255, 255, 0.7);
+  --color-glass-border-strong: rgba(255, 255, 255, 0.9);
+
+  --color-text-primary: #1d1d1f;
+  --color-text-secondary: #6e6e73;
+  --color-text-tertiary: #86868b;
+  --color-text-quaternary: #afafb2;
+  --color-text-on-accent: #ffffff;
+
+  /* ── Typography ── */
+  /* SF Pro stack: macOS/iOS native → General Sans web fallback → Inter → system */
+  --font-heading: "SF Pro Display", "General Sans", "Inter Variable", "Inter", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-body: "SF Pro Text", "Inter Variable", "Inter", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-mono: "SF Mono", "JetBrains Mono Variable", "JetBrains Mono", ui-monospace, monospace;
+
+  --letter-spacing-heading: -0.03em;
+  --letter-spacing-heading-tight: -0.04em;
+  --letter-spacing-body: -0.011em;
+  --letter-spacing-mono: -0.02em;
+
+  /* ── Spacing / Layout ── */
+  --spacing-section: 7rem;
+  --spacing-section-sm: 4.5rem;
+
+  /* ── Transitions ── */
+  --transition-fast: 180ms cubic-bezier(0.25, 0.1, 0.25, 1);
+  --transition-default: 300ms cubic-bezier(0.25, 0.1, 0.25, 1);
+  --transition-slow: 500ms cubic-bezier(0.25, 0.1, 0.25, 1);
+  --transition-ambient: 20000ms linear;
+
+  /* ── Border radius — generous, Apple-style ── */
+  --radius-card: 16px;
+  --radius-card-lg: 24px;
+  --radius-hero: 28px;
+  --radius-button: 12px;
+  --radius-tag: 8px;
+  --radius-full: 9999px;
+
+  /* ── Shadows — soft, diffused, no hard edges ── */
+  --shadow-glass-hero: 0 20px 60px rgba(0, 0, 0, 0.06),
+                       0 1px 3px rgba(0, 0, 0, 0.04);
+  --shadow-glass-card: 0 8px 40px rgba(0, 0, 0, 0.05),
+                       0 1px 2px rgba(0, 0, 0, 0.03);
+  --shadow-glass-card-hover: 0 12px 50px rgba(0, 0, 0, 0.07),
+                             0 1px 3px rgba(0, 0, 0, 0.04);
+  --shadow-nav: 0 1px 30px rgba(0, 0, 0, 0.04);
+  --shadow-elevated: 0 24px 80px rgba(0, 0, 0, 0.08),
+                     0 2px 4px rgba(0, 0, 0, 0.03);
+  --shadow-button: 0 1px 3px rgba(0, 0, 0, 0.1),
+                   0 4px 12px rgba(0, 113, 227, 0.15);
+  --shadow-button-hover: 0 2px 6px rgba(0, 0, 0, 0.1),
+                         0 8px 24px rgba(0, 113, 227, 0.2);
+
+  /* ── Glass inner highlights — mimics Apple edge-light ── */
+  --inset-glass-hero: inset 0 1px 0 rgba(255, 255, 255, 0.8),
+                      inset 0 -1px 0 rgba(255, 255, 255, 0.3);
+  --inset-glass-card: inset 0 1px 0 rgba(255, 255, 255, 0.6),
+                      inset 0 -1px 0 rgba(255, 255, 255, 0.2);
+}
+
+
+/* ─── Base Styles ─── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-body);
+  letter-spacing: var(--letter-spacing-body);
+  color: var(--color-text-primary);
+  background-color: var(--color-base);
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-text-on-accent);
+}
+
+
+/* ─── Typography Defaults ─── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  line-height: 1.12;
+  color: var(--color-text-primary);
+  letter-spacing: var(--letter-spacing-heading);
+}
+
+h1 {
+  font-size: clamp(2.5rem, 5.5vw, 4.5rem);
+  font-weight: 700;
+  letter-spacing: var(--letter-spacing-heading-tight);
+}
+
+h2 { font-size: clamp(1.75rem, 3.5vw, 2.75rem); }
+h3 { font-size: clamp(1.25rem, 2.2vw, 1.625rem); }
+h4 { font-size: clamp(1rem, 1.8vw, 1.1875rem); }
+
+p {
+  color: var(--color-text-secondary);
+  max-width: 60ch;
+  line-height: 1.7;
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-accent-hover);
+}
+
+code, .mono {
+  font-family: var(--font-mono);
+  letter-spacing: var(--letter-spacing-mono);
+  font-size: 0.85em;
+}
+
+
+/* ============================================================
+   GLASS SYSTEM — Reusable component classes
+   ============================================================
+   Three tiers of glass: hero → card → nav.
+   Apple-style: white glass, soft shadows, inner edge-light,
+   responds with brightness on hover (not color glow).
+   ============================================================ */
+
+/* ── .glass-hero ──
+   Maximum prominence: hero panels, featured sections.
+   Highest opacity, heaviest blur, full diffused shadow.
+   ------------------------------------------------ */
+.glass-hero {
+  backdrop-filter: blur(20px) saturate(1.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  background: rgba(255, 255, 255, 0.60);
+  border: 1px solid rgba(255, 255, 255, 0.80);
+  border-radius: var(--radius-hero);
+  box-shadow: var(--shadow-glass-hero), var(--inset-glass-hero);
+  transition: box-shadow var(--transition-default),
+              background var(--transition-default);
+}
+
+.glass-hero:hover {
+  background: rgba(255, 255, 255, 0.68);
+  box-shadow: var(--shadow-elevated), var(--inset-glass-hero);
+}
+
+/* ── .glass-card ──
+   Standard cards: project cards, content blocks.
+   Slightly lower opacity, lighter shadow.
+   Hover brightens the surface (responds with light, not color).
+   ------------------------------------------------ */
+.glass-card {
+  backdrop-filter: blur(12px) saturate(1.2);
+  -webkit-backdrop-filter: blur(12px) saturate(1.2);
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.70);
+  border-radius: var(--radius-card-lg);
+  box-shadow: var(--shadow-glass-card), var(--inset-glass-card);
+  transition: box-shadow var(--transition-default),
+              background var(--transition-default),
+              transform var(--transition-default);
+}
+
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.70);
+  box-shadow: var(--shadow-glass-card-hover), var(--inset-glass-card);
+  transform: translateY(-2px);
+}
+
+/* ── .glass-nav ──
+   Navigation bar: Apple's classic sticky nav treatment.
+   High opacity, heavy blur, bottom-border only.
+   ------------------------------------------------ */
+.glass-nav {
+  backdrop-filter: blur(16px) saturate(1.5);
+  -webkit-backdrop-filter: blur(16px) saturate(1.5);
+  background: rgba(255, 255, 255, 0.70);
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.50);
+  box-shadow: var(--shadow-nav);
+  transition: background var(--transition-default),
+              border-color var(--transition-default),
+              box-shadow var(--transition-default);
+}
+
+.glass-nav.scrolled {
+  background: rgba(255, 255, 255, 0.82);
+  border-bottom-color: rgba(0, 0, 0, 0.06);
+  box-shadow: 0 1px 40px rgba(0, 0, 0, 0.06);
+}
+
+/* ── Mobile Optimization for Glass (Performance) ── */
+@media (min-width: 768px) {
+  .glass-hero {
+    backdrop-filter: blur(40px) saturate(1.6);
+    -webkit-backdrop-filter: blur(40px) saturate(1.6);
+  }
+  .glass-card {
+    backdrop-filter: blur(20px) saturate(1.4);
+    -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  }
+  .glass-nav {
+    backdrop-filter: blur(28px) saturate(1.5);
+    -webkit-backdrop-filter: blur(28px) saturate(1.5);
+  }
+}
+
+
+/* ============================================================
+   AMBIENT GRADIENT MESH — Background system
+   ============================================================
+   Two soft blobs positioned off-center at very low opacity
+   (4-8%), barely visible. Glass panels above them pick up
+   a faint color tint that shifts with scroll position.
+   This is what makes Apple's glass feel alive.
+   ============================================================ */
+
+.ambient-mesh {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Blue blob — upper-left quadrant, offset */
+.ambient-mesh::before {
+  content: "";
+  position: absolute;
+  width: 65vw;
+  height: 65vh;
+  top: -20%;
+  left: -15%;
+  background: radial-gradient(circle, var(--color-mesh-blue), transparent 70%);
+  opacity: 0.07;
+  border-radius: 50%;
+  filter: blur(40px);
+  will-change: transform;
+}
+
+/* Coral blob — lower-right quadrant, offset */
+.ambient-mesh::after {
+  content: "";
+  position: absolute;
+  width: 55vw;
+  height: 55vh;
+  bottom: -15%;
+  right: -10%;
+  background: radial-gradient(circle, var(--color-mesh-coral), transparent 70%);
+  opacity: 0.05;
+  border-radius: 50%;
+  filter: blur(40px);
+  will-change: transform;
+}
+
+/* Enable complex mesh drifts only on larger screens to save mobile GPU */
+@media (min-width: 768px) {
+  .ambient-mesh::before {
+    filter: blur(80px);
+    animation: mesh-drift-1 20s ease-in-out infinite alternate;
+  }
+  .ambient-mesh::after {
+    filter: blur(80px);
+    animation: mesh-drift-2 20s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes mesh-drift-1 {
+  0%   { transform: translate(0, 0) scale(1); }
+  33%  { transform: translate(4vw, 6vh) scale(1.06); }
+  66%  { transform: translate(-2vw, 3vh) scale(0.97); }
+  100% { transform: translate(6vw, -4vh) scale(1.03); }
+}
+
+@keyframes mesh-drift-2 {
+  0%   { transform: translate(0, 0) scale(1); }
+  33%  { transform: translate(-5vw, -3vh) scale(1.05); }
+  66%  { transform: translate(3vw, -6vh) scale(0.94); }
+  100% { transform: translate(-2vw, 5vh) scale(1.07); }
+}
+
+
+/* ============================================================
+   UTILITY CLASSES
+   ============================================================ */
+
+/* ── Label / Tag (mono) — used minimally ── */
+.tag {
+  font-family: var(--font-mono);
+  letter-spacing: var(--letter-spacing-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+  transition: color var(--transition-fast);
+}
+
+.tag-accent {
+  color: var(--color-accent);
+}
+
+.tag-coral {
+  color: var(--color-coral);
+}
+
+/* ── Section label (eyebrow text) ── */
+.section-label {
+  font-family: var(--font-heading);
+  letter-spacing: 0.01em;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  margin-bottom: 0.75rem;
+}
+
+/* ── Asymmetric grid layouts ── */
+.grid-60-40 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+}
+
+@media (min-width: 768px) {
+  .grid-60-40 {
+    grid-template-columns: 3fr 2fr;
+  }
+}
+
+.grid-40-60 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+}
+
+@media (min-width: 768px) {
+  .grid-40-60 {
+    grid-template-columns: 2fr 3fr;
+  }
+}
+
+.grid-offset {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .grid-offset {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .grid-offset > *:nth-child(even) {
+    transform: translateY(3rem);
+  }
+}
+
+/* ── Container ── */
+.container-wide {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .container-wide {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+}
+
+/* ── Button styles ── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8125rem 1.75rem;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--color-text-on-accent);
+  background: var(--color-accent);
+  border: none;
+  border-radius: var(--radius-button);
+  cursor: pointer;
+  box-shadow: var(--shadow-button);
+  transition: transform var(--transition-fast),
+              box-shadow var(--transition-fast),
+              background var(--transition-fast);
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-button-hover);
+  background: var(--color-accent-hover);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-button);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8125rem 1.75rem;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--color-accent);
+  background: var(--color-accent-soft);
+  border: 1px solid transparent;
+  border-radius: var(--radius-button);
+  cursor: pointer;
+  transition: transform var(--transition-fast),
+              background var(--transition-fast),
+              border-color var(--transition-fast);
+}
+
+.btn-secondary:hover {
+  background: rgba(0, 113, 227, 0.12);
+  border-color: rgba(0, 113, 227, 0.08);
+  transform: translateY(-1px);
+}
+
+.btn-secondary:active {
+  transform: translateY(0);
+}
+
+/* ── Distinct Glass Buttons (Hero / Contact) ── */
+.btn-glass-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.75rem;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--color-text-primary);
+  background-color: rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: var(--radius-button);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  cursor: pointer;
+  transition: transform var(--transition-fast),
+              box-shadow var(--transition-fast),
+              background-color var(--transition-fast);
+}
+
+.btn-glass-primary:hover {
+  background-color: rgba(255, 255, 255, 0.95);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+
+@media (min-width: 768px) {
+  .btn-glass-primary {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+}
+
+.btn-glass-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.75rem;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--color-text-secondary);
+  background-color: rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: var(--radius-button);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  cursor: pointer;
+  transition: transform var(--transition-fast),
+              border-color var(--transition-fast),
+              background-color var(--transition-fast),
+              color var(--transition-fast);
+}
+
+.btn-glass-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+  border-color: rgba(255, 255, 255, 0.9);
+  color: var(--color-text-primary);
+  transform: translateY(-2px);
+}
+
+@media (min-width: 768px) {
+  .btn-glass-secondary {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+}
+
+/* ── Divider ── */
+.divider {
+  border: none;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 0, 0, 0.06) 25%,
+    rgba(0, 0, 0, 0.06) 75%,
+    transparent
+  );
+  margin: var(--spacing-section-sm) 0;
+}
+
+
+/* ============================================================
+   SCROLLBAR — subtle, Apple-style
+   ============================================================ */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.25);
+  background-clip: padding-box;
+}
+
+
+/* ============================================================
+   ANIMATIONS — Entrance utilities
+   ============================================================ */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.6s ease-out both;
+}
+
+/* Staggered entrance delays */
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+.delay-600 { animation-delay: 600ms; }
