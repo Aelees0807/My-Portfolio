@@ -21,7 +21,7 @@ const content = {
      NAV — Navigation links
      ───────────────────────────────────────────── */
   nav: {
-    brand: 'Portfolio',
+    brand: 'Aelees Bhuva.',
     links: [
       { label: 'Work', href: '#work' },
       { label: 'About', href: '#about' },
@@ -124,7 +124,7 @@ const content = {
       'I am a Data Science and Machine Learning Engineer passionate about building intelligent systems that solve real-world problems.',
       'Currently pursuing my B.Tech in Computer Engineering with a specialization in Data Science at DEPSTAR, CHARUSAT University (3rd Year).',
     ],
-    image: '/about/portrait.jpg',
+    image: '/about/portrait.png',
     stats: [
       { label: 'CGPA', value: '7.8' },
       { label: 'University', value: 'CHARUSAT' },
@@ -194,13 +194,7 @@ const content = {
     ],
   },
 
-  /* ─────────────────────────────────────────────
-     FOOTER
-     ───────────────────────────────────────────── */
-  footer: {
-    copyright: `© ${new Date().getFullYear()} Your Name. All rights reserved.`,
-    builtWith: 'Built with React, Tailwind CSS & Framer Motion.',
-  },
+ 
 };
 
 export default content;

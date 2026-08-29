@@ -21,12 +21,20 @@ export default function About() {
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
-          <span
-            className="tag"
-            style={{ color: 'var(--color-text-quaternary)' }}
-          >
-            Your portrait here
-          </span>
+          {content.about.image ? (
+            <img 
+              src={content.about.image} 
+              alt="Portrait" 
+              className="w-full h-full object-cover"
+            />
+          ) : (
+            <span
+              className="tag"
+              style={{ color: 'var(--color-text-quaternary)' }}
+            >
+              Your portrait here
+            </span>
+          )}
         </motion.div>
 
         {/* Right — Text (60%) */}

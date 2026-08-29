@@ -1,5 +1,5 @@
 import { AmbientMesh, GrainOverlay, Navbar } from './components';
-import { Hero, Projects, About, Skills, Experience, Contact, Footer } from './sections';
+import { Hero, Projects, About, Skills, Experience, Contact} from './sections';
 
 /**
  * App — Root layout.
@@ -35,7 +35,7 @@ export default function App() {
         <hr className="divider container-wide" />
         <Contact />
 
-        <Footer />
+        
       </main>
     </>
   );
