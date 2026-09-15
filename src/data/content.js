@@ -73,19 +73,18 @@ const content = {
       tags: ['PyTorch', 'EfficientNet-B0', 'Grad-CAM', 'Streamlit', 'Python'],
       image: 'gradcam', // Special flag for the flagship visual
       links: {
-        live: 'https://example.com/live',
-        github: 'https://github.com/yourusername/medical-imaging',
+        github: 'https://github.com/Aelees0807/DiagnoVision',
       },
       featured: true,
     },
     {
       id: 'smart-campus',
-      title: 'Smart Campus / Workflow Hub',
+      title: 'Smart Campus',
       subtitle: 'Role-based academic workflow management platform.',
       description: 'A comprehensive academic management system featuring role-based access control, secure authentication, and complex relational data handling.',
       tags: ['React 19', 'Node.js', 'Express', 'Supabase/Postgres', 'RLS', 'Jest'],
       links: {
-        github: 'https://github.com/yourusername/smart-campus',
+        github: 'https://github.com/Aelees0807/Smart_Campus',
       },
       featured: false,
     },
@@ -96,7 +95,7 @@ const content = {
       description: 'A full-stack financial dashboard that helps users categorize and visualize their spending habits over time.',
       tags: ['React', 'Node.js', 'MongoDB', 'Express'],
       links: {
-        github: 'https://github.com/yourusername/spend-io',
+        github: 'https://github.com/Aelees0807/SpendIO',
       },
       featured: false,
     },
@@ -106,10 +105,7 @@ const content = {
       subtitle: 'Hackathon-winning city exploration and engagement platform.',
       description: 'Built during a high-pressure hackathon, this platform connects citizens with local city events and civic engagement opportunities in real-time.',
       tags: ['React', 'Firebase', 'Tailwind'],
-      links: {
-        live: 'https://example.com/apnaseher',
-        github: 'https://github.com/yourusername/apna-seher',
-      },
+      links: {},
       featured: false,
     },
   ],
@@ -166,7 +162,7 @@ const content = {
         company: 'Synent Technologies',
         period: '15 May – 15 Jun 2026',
         description: 'Completed comprehensive data science projects encompassing data cleaning, exploratory data analysis, and dashboard development.',
-        dashboardLink: 'https://streamlit.io', // Placeholder for live Streamlit dashboard
+        dashboardLink: 'https://synent-task04-csvtodashboard-aeleesbhuva.streamlit.app/',
         tasks: [
           'Titanic data cleaning',
           'Iris dataset analysis',

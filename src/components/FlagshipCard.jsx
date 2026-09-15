@@ -16,7 +16,6 @@ export default function FlagshipCard({ project }) {
     >
       {/* ── Content Side ── */}
       <div className="p-8 md:p-12 md:w-[60%] flex flex-col z-10 relative">
-        <p className="section-label mb-2 text-xs uppercase tracking-widest" style={{ color: 'var(--color-coral)' }}>Flagship Project</p>
         <h3
           className="mb-2 text-2xl md:text-3xl"
           style={{ fontFamily: 'var(--font-heading)' }}
@@ -57,24 +56,21 @@ export default function FlagshipCard({ project }) {
 
         {/* Links */}
         <div className="flex gap-4 mt-auto">
-          {project.links?.live && (
-            <a
-              href={project.links.live}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-primary"
-            >
-              Live Demo <ExternalLink size={16} />
-            </a>
-          )}
           {project.links?.github && (
             <a
               href={project.links.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-secondary"
+              className="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-lg transition-all"
+              style={{
+                background: 'rgba(0,0,0,0.07)',
+                color: 'var(--color-text-secondary)',
+                border: '1px solid rgba(0,0,0,0.08)',
+              }}
+              onMouseEnter={e => { e.currentTarget.style.background = 'rgba(0,0,0,0.12)'; e.currentTarget.style.color = 'var(--color-text-primary)'; }}
+              onMouseLeave={e => { e.currentTarget.style.background = 'rgba(0,0,0,0.07)'; e.currentTarget.style.color = 'var(--color-text-secondary)'; }}
             >
-              Source <GitBranch size={16} />
+              Source <GitBranch size={15} />
             </a>
           )}
         </div>

@@ -104,10 +104,14 @@ export default function ProjectCard({ project, index = 0 }) {
               href={project.links.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-sm font-medium transition-colors"
-              style={{ color: 'var(--color-text-secondary)' }}
-              onMouseEnter={e => e.currentTarget.style.color = 'var(--color-text-primary)'}
-              onMouseLeave={e => e.currentTarget.style.color = 'var(--color-text-secondary)'}
+              className="inline-flex items-center gap-1.5 text-sm font-medium px-3 py-1.5 rounded-md transition-all"
+              style={{
+                background: 'rgba(0,0,0,0.06)',
+                color: 'var(--color-text-secondary)',
+                border: '1px solid rgba(0,0,0,0.07)',
+              }}
+              onMouseEnter={e => { e.currentTarget.style.background = 'rgba(0,0,0,0.11)'; e.currentTarget.style.color = 'var(--color-text-primary)'; }}
+              onMouseLeave={e => { e.currentTarget.style.background = 'rgba(0,0,0,0.06)'; e.currentTarget.style.color = 'var(--color-text-secondary)'; }}
             >
               Source <GitBranch size={14} />
             </a>
