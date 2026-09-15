@@ -1,16 +1,78 @@
-# React + Vite
+# Aelees Bhuva — Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A personal portfolio website built with **React 19** and **Vite**, showcasing projects, skills, and experience in Data Science & Machine Learning engineering.
 
-Currently, two official plugins are available:
+## 🚀 Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+| Layer | Technology |
+|-------|------------|
+| Framework | React 19 |
+| Build Tool | Vite 8 |
+| Styling | Tailwind CSS v4 |
+| Animations | Framer Motion, GSAP |
+| Icons | Lucide React |
+| Linting | Oxlint |
 
-## React Compiler
+## 📁 Project Structure
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```
+src/
+├── components/       # Reusable UI components
+│   ├── AmbientMesh   # Animated background mesh
+│   ├── FlagshipCard  # Featured project card
+│   ├── GrainOverlay  # Noise texture overlay
+│   ├── MagneticButton
+│   ├── Navbar
+│   ├── ProjectCard
+│   ├── Section
+│   └── TechSphere    # Interactive 3D tech sphere
+├── sections/         # Full-page sections
+│   ├── Hero
+│   ├── Projects
+│   ├── About
+│   ├── Skills
+│   ├── Experience
+│   └── Contact
+├── data/
+│   └── content.js    # ✏️ Single source of truth for all content
+├── hooks/            # Custom React hooks
+└── styles/           # Global CSS
+```
 
-## Expanding the Oxlint configuration
+## ✏️ Editing Content
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+All text, links, and structured data live in **[`src/data/content.js`](src/data/content.js)**. Update that file to change any copy across the entire site — no need to touch component files.
+
+## 🛠️ Getting Started
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
+
+# Lint
+npm run lint
+```
+
+## 🗂️ Featured Projects
+
+| Project | Description |
+|---------|-------------|
+| [DiagnoVision](https://github.com/Aelees0807/DiagnoVision) | Medical image classification with EfficientNet-B0 & Grad-CAM interpretability |
+| [Smart Campus](https://github.com/Aelees0807/Smart_Campus) | Role-based academic workflow management platform |
+| [SpendIO](https://github.com/Aelees0807/SpendIO) | Intelligent expense tracking and financial analytics |
+| Apna Seher | Hackathon-winning city exploration and engagement platform |
+
+## 📬 Contact
+
+- **Email:** aelees07@gmail.com
+- **GitHub:** [@Aelees0807](https://github.com/Aelees0807)
+- **LinkedIn:** [aelees-bhuva](https://linkedin.com/in/aelees-bhuva)
